@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avighna's Webpage</title>
+  <link rel="icon" href="logo.png">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #bcbcbc;
+      --text-color: #423f3f;
+      --card-bg: #dfdfdf;
+      --card-border: #ccc;
+      --highlight: #a38028;
+      --heading-color: #c89210;
+      --img-border: #816d25;
+      --button-text-color: var(--text-color);
+    }
+
+    .light-mode {
+      --bg-color: #312e2e;
+      --text-color: #d8caca;
+      --card-bg: #4e4848;
+      --card-border: #333;
+      --highlight: #8e7528;
+      --heading-color: #d4af37;
+      --img-border: #564c2a;
+      --button-text-color: white;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      font-family: 'Raleway', sans-serif;
+      margin: 0;
+      padding: 20px;
+      color: var(--text-color);
+      line-height: 1.5;
+      transition: all 0.4s ease;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      max-width: 600px;
+      margin: 10px;
+      padding: 18px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--card-border);
+      text-align: center;
+      transition: background 0.4s, border 0.4s, transform 0.3s, box-shadow 0.3s;
+      flex: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    h2, h3 {
+      font-family: 'Raleway', sans-serif;
+      color: var(--heading-color);
+      font-size: 1.6rem;
+      margin: 12px 0 16px 0;
+      transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    h2:hover, h3:hover {
+      color: var(--highlight);
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p {
+      margin: 0 0 12px 0;
+      font-size: 0.95rem;
+      text-align: left;
+    }
+
+    ul {
+      text-align: left;
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    ul li {
+      margin-bottom: 4px;
+      font-size: 0.95rem;
+      line-height: 1.3;
+    }
+
+    .highlight {
+      font-weight: 600;
+      color: var(--highlight);
+    }
+
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--img-border);
+      margin: 0 auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
+    }
+
+    .toggle-btn {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      z-index: 1000;
+    }
+
+    .toggle-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transition: transform 0.3s;
+    }
+
+    .toggle-btn:hover img {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .vertical-card {
+      width: 280px;
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      padding: 20px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 0;
+    }
+
+    .button-card {
+      width: 100%;
+      margin-top: 20px;
+      padding: 20px;
+      background: transparent;
+      border-radius: 14px;
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
+      text-align: center;
+    }
+
+    .home-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      background-color: transparent;
+      color: var(--button-text-color);
+      border: 2px solid var(--highlight);
+      padding: 6px 14px;
+      width: 100%;
+      height: 36px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: var(--highlight);
+      color: white;
+      box-shadow: 0 0 10px var(--highlight);
+    }
+
+    .home-icon {
+      width: 20px;
+      height: 20px;
+      margin-left: auto;
+    }
+
+    .light-icon {
+      display: inline;
+    }
+
+    .dark-icon {
+      display: none;
+    }
+
+    .light-mode .light-icon {
+      display: none;
+    }
+
+    .light-mode .dark-icon {
+      display: inline;
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" onclick="toggleMode()" aria-label="Toggle Theme">
+    <img src="sun.png" alt="Toggle Theme" id="themeIcon">
+  </button>
+
+  <div class="container">
+    <div class="vertical-card">
+      <h3>Avighna Das</h3>
+      <img src="avighna.png" alt="Avighna Das" class="profile-img" />
+      <p>avighnadas@outlook.com</p>
+
+      <div style="width:250px" >
+        <button type="button" class="home-button" onclick="window.location.href='#'">
+          <span>HOME</span>
+          <!-- Dark House Icon for Light Mode -->
+          <img src="home-dark.png" alt="Home Dark Icon" class="home-icon light-icon">
+          <!-- Light House Icon for Dark Mode -->
+          <img src="home-light.png" alt="Home Light Icon" class="home-icon dark-icon" >
+        </button>
+      </div>
+
+      <div style="width:250px" >
+        <button type="button" class="home-button" onclick="window.location.href='#'">
+          <span>HOME</span>
+          <!-- Dark House Icon for Light Mode -->
+          <img src="home-dark.png" alt="Home Dark Icon" class="home-icon light-icon">
+          <!-- Light House Icon for Dark Mode -->
+          <img src="home-light.png" alt="Home Light Icon" class="home-icon dark-icon" >
+        </button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Hello! I'm Avighna Das—turning boredom into creativity, one idea at a time.</h2>
+      <p>
+        I'm a <span class="highlight">learning coder.</span> I built this website from scratch. While many rely on AI tools like ChatGPT to create their sites and call themselves "professional coders," I take pride in crafting clean, functional code by hand.
+      </p>
+      <p>
+        My expertise lies in <span class="highlight">HTML</span> and <span class="highlight">coding and debugging</span>, and I'm always expanding my skill set. Beyond coding, I'm an <span class="highlight">avid cricket player</span> — the sport's strategy and teamwork inspire my approach to development.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>List of achievements:</h3>
+      <ul>
+        <li>Built this website entirely from scratch using HTML.</li>
+        <li>Developed several Python projects, including automation tools and web scrapers.</li>
+        <li>Participated in inter-school coding competitions and secured top ranks.</li>
+        <li>Created a personal blog using static site generators.</li>
+        <li>Represented school in district-level cricket tournaments.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    const themeIcon = document.getElementById('themeIcon');
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'light' : 'dark');
+
+    if (currentTheme === 'dark') {
+      document.body.classList.add('light-mode');
+      themeIcon.src = 'sun.png';
+    } else {
+      themeIcon.src = 'moon.png';
+    }
+
+    function toggleMode() {
+      const isDark = document.body.classList.toggle('light-mode');
+      if (isDark) {
+        themeIcon.src = 'sun.png';
+        localStorage.setItem('theme', 'dark');
+      } else {
+        themeIcon.src = 'moon.png';
+        localStorage.setItem('theme', 'light');
+      }
+    }
+  </script>
+</body>
+</html>
