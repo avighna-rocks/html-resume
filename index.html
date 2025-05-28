@@ -29,6 +29,10 @@
       --button-text-color: white;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg-color);
       font-family: 'Raleway', sans-serif;
@@ -55,14 +59,15 @@
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
       border: 1px solid var(--card-border);
       text-align: center;
-      transition: background 0.4s, border 0.4s, transform 0.3s, box-shadow 0.3s;
+      transition: all 0.4s ease;
       flex: 1;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
     }
 
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-    }
+    .card:nth-child(2) { animation-delay: 0.1s; }
+    .card:nth-child(3) { animation-delay: 0.2s; }
 
     h2, h3 {
       font-family: 'Raleway', sans-serif;
@@ -108,7 +113,7 @@
       border: 4px solid var(--img-border);
       margin: 0 auto;
       display: block;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
     }
 
     .profile-img:hover {
@@ -119,8 +124,8 @@
       position: fixed;
       top: 15px;
       right: 20px;
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background-color: transparent;
       border: none;
       cursor: pointer;
@@ -132,11 +137,11 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: transform 0.3s;
+      transition: transform 0.4s ease;
     }
 
     .toggle-btn:hover img {
-      transform: scale(1.1) rotate(10deg);
+      transform: rotate(20deg) scale(1.1);
     }
 
     .vertical-card {
@@ -150,6 +155,10 @@
       flex-direction: column;
       align-items: center;
       margin-left: 0;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.3s;
     }
 
     .button-card {
@@ -186,12 +195,18 @@
       background-color: var(--highlight);
       color: white;
       box-shadow: 0 0 10px var(--highlight);
+      transform: scale(1.03);
     }
 
     .home-icon {
       width: 20px;
       height: 20px;
       margin-left: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .home-button:hover .home-icon {
+      transform: scale(1.2);
     }
 
     .light-icon {
@@ -209,6 +224,45 @@
     .light-mode .dark-icon {
       display: inline;
     }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .card, .vertical-card {
+        max-width: 90%;
+        width: 100%;
+      }
+
+      .home-button {
+        font-size: 0.9rem;
+        height: 42px;
+      }
+
+      .profile-img {
+        width: 120px;
+        height: 120px;
+      }
+
+      h2, h3 {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -222,23 +276,19 @@
       <img src="avighna.png" alt="Avighna Das" class="profile-img" />
       <p>avighnadas@outlook.com</p>
 
-      <div style="width:250px" >
+      <div style="width:250px">
         <button type="button" class="home-button" onclick="window.location.href='#'">
           <span>HOME </span>
-          <!-- Dark House Icon for Light Mode -->
           <img src="home-dark.png" alt="Home Dark Icon" class="home-icon light-icon">
-          <!-- Light House Icon for Dark Mode -->
-          <img src="home-light.png" alt="Home Light Icon" class="home-icon dark-icon" >
+          <img src="home-light.png" alt="Home Light Icon" class="home-icon dark-icon">
         </button>
       </div>
 
-      <div style="width:250px; " >
+      <div style="width:250px; margin-top: 12px;">
         <button type="button" class="home-button" onclick="window.location.href='./About.html'">
           <span>ABOUT</span>
-          <!-- Dark House Icon for Light Mode -->
-          <img src="info-button.png" alt="Home Dark Icon" class="home-icon light-icon">
-          <!-- Light House Icon for Dark Mode -->
-          <img src="information.png" alt="Home Light Icon" class="home-icon dark-icon" >
+          <img src="info-button.png" alt="About Icon" class="home-icon light-icon">
+          <img src="information.png" alt="About Icon" class="home-icon dark-icon">
         </button>
       </div>
     </div>
@@ -287,6 +337,13 @@
         localStorage.setItem('theme', 'light');
       }
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.card, .vertical-card').forEach(el => {
+        el.style.opacity = 1;
+        el.style.transform = 'translateY(0)';
+      });
+    });
   </script>
 </body>
 </html>
