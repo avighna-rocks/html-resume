@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Avighna's Webpage</title>
+  <title>Home - Avighna Das</title>
   <link rel="icon" href="logo.png">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-color: #bcbcbc;
+      --bg-color: #e7e7e7;
       --text-color: #423f3f;
       --card-bg: #dfdfdf;
       --card-border: #ccc;
@@ -19,18 +19,14 @@
     }
 
     .light-mode {
-      --bg-color: #312e2e;
+      --bg-color: #3b3b3b;
       --text-color: #d8caca;
-      --card-bg: #4e4848;
-      --card-border: #333;
+      --card-bg: #353434;
+      --card-border: #2b2929;
       --highlight: #8e7528;
       --heading-color: #d4af37;
       --img-border: #564c2a;
       --button-text-color: white;
-    }
-
-    html {
-      scroll-behavior: smooth;
     }
 
     body {
@@ -43,89 +39,12 @@
       transition: all 0.4s ease;
     }
 
-    .container {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .card {
-      max-width: 600px;
-      margin: 10px;
-      padding: 18px;
-      background: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-      border: 1px solid var(--card-border);
-      text-align: center;
-      transition: all 0.4s ease;
-      flex: 1;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .card:nth-child(2) { animation-delay: 0.1s; }
-    .card:nth-child(3) { animation-delay: 0.2s; }
-
-    h2, h3 {
-      font-family: 'Raleway', sans-serif;
-      color: var(--heading-color);
-      font-size: 1.6rem;
-      margin: 12px 0 16px 0;
-      transition: color 0.3s ease, text-shadow 0.3s ease;
-    }
-
-    h2:hover, h3:hover {
-      color: var(--highlight);
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
-    }
-
-    p {
-      margin: 0 0 12px 0;
-      font-size: 0.95rem;
-      text-align: left;
-    }
-
-    ul {
-      text-align: left;
-      padding-left: 18px;
-      margin: 0;
-    }
-
-    ul li {
-      margin-bottom: 4px;
-      font-size: 0.95rem;
-      line-height: 1.3;
-    }
-
-    .highlight {
-      font-weight: 600;
-      color: var(--highlight);
-    }
-
-    .profile-img {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--img-border);
-      margin: 0 auto;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.05);
-    }
-
     .toggle-btn {
       position: fixed;
       top: 15px;
       right: 20px;
-      width: 44px;
-      height: 44px;
+      width: 40px;
+      height: 40px;
       background-color: transparent;
       border: none;
       cursor: pointer;
@@ -137,14 +56,25 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      transition: transform 0.4s ease;
+      transition: transform 0.3s;
     }
 
     .toggle-btn:hover img {
-      transform: rotate(20deg) scale(1.1);
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start; /* align vertical card top */
+      justify-content: flex-start;
+      flex-wrap: nowrap;
     }
 
     .vertical-card {
+      margin-top: 100px; /* vertical spacing like About.html */
       width: 280px;
       background: var(--card-bg);
       border-radius: 12px;
@@ -154,22 +84,25 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin-left: 0;
       opacity: 0;
       transform: translateY(30px);
       animation: fadeInUp 0.6s ease forwards;
       animation-delay: 0.3s;
     }
 
-    .button-card {
-      width: 100%;
-      margin-top: 20px;
-      padding: 20px;
-      background: transparent;
-      border-radius: 14px;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5);
-      border: 1px solid var(--card-border);
-      text-align: center;
+    .profile-img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--img-border);
+      margin: 0 auto 15px;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.05);
     }
 
     .home-button {
@@ -189,6 +122,7 @@
       border-radius: 8px;
       cursor: pointer;
       transition: all 0.3s ease;
+      margin-top: 10px;
     }
 
     .home-button:hover {
@@ -209,20 +143,40 @@
       transform: scale(1.2);
     }
 
-    .light-icon {
-      display: inline;
+    .content-cards {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 0.6s ease forwards;
+      animation-delay: 0.4s;
     }
 
-    .dark-icon {
-      display: none;
+    .card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      padding: 18px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
     }
 
-    .light-mode .light-icon {
-      display: none;
+    h1, h2 {
+      color: var(--heading-color);
+      margin-top: 0;
     }
 
-    .light-mode .dark-icon {
-      display: inline;
+    h2 {
+      margin-bottom: 12px;
+      border-bottom: 2px solid var(--highlight);
+      padding-bottom: 6px;
+    }
+
+    .highlight {
+      color: var(--highlight);
+      font-weight: bold;
     }
 
     @keyframes fadeInUp {
@@ -240,34 +194,20 @@
       .container {
         flex-direction: column;
         align-items: center;
-        gap: 16px;
       }
-
-      .card, .vertical-card {
-        max-width: 90%;
-        width: 100%;
+      .vertical-card {
+        margin-top: 20px;
+        width: 90%;
       }
-
-      .home-button {
-        font-size: 0.9rem;
-        height: 42px;
-      }
-
-      .profile-img {
-        width: 120px;
-        height: 120px;
-      }
-
-      h2, h3 {
-        font-size: 1.3rem;
-        text-align: center;
+      .content-cards {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
-  <button class="toggle-btn" onclick="toggleMode()" aria-label="Toggle Theme">
-    <img src="sun.png" alt="Toggle Theme" id="themeIcon">
+  <button class="toggle-btn" onclick="toggleMode()">
+    <img id="themeIcon" src="moon.png" alt="Toggle Theme" />
   </button>
 
   <div class="container">
@@ -276,70 +216,63 @@
       <img src="avighna.png" alt="Avighna Das" class="profile-img" />
       <p>avighnadas@outlook.com</p>
 
-      <div style="width:250px">
-        <button type="button" class="home-button" onclick="window.location.href='#'">
-          <span>HOME </span>
-          <img src="home-dark.png" alt="Home Dark Icon" class="home-icon light-icon">
-          <img src="home-light.png" alt="Home Light Icon" class="home-icon dark-icon">
-        </button>
-      </div>
+      <button type="button" class="home-button" onclick="window.location.href='index.html'">
+        <span>HOME</span>
+        <img src="home-dark.png" alt="Home Dark Icon" class="home-icon" />
+      </button>
 
-      <div style="width:250px; margin-top: 12px;">
-        <button type="button" class="home-button" onclick="window.location.href='./About.html'">
-          <span>ABOUT</span>
-          <img src="info-button.png" alt="About Icon" class="home-icon light-icon">
-          <img src="information.png" alt="About Icon" class="home-icon dark-icon">
-        </button>
-      </div>
+      <button type="button" class="home-button" onclick="window.location.href='About.html'">
+        <span>ABOUT</span>
+        <img src="info-button.png" alt="About Icon" class="home-icon" />
+      </button>
     </div>
 
-    <div class="card">
-      <h2>Hello! I'm Avighna Das—turning boredom into creativity, one idea at a time.</h2>
-      <p>
-        I'm a <span class="highlight">learning coder.</span> I built this website from scratch. While many rely on AI tools like ChatGPT to create their sites and call themselves "professional coders," I take pride in crafting clean, functional code by hand.
-      </p>
-      <p>
-        My expertise lies in <span class="highlight">HTML</span> and <span class="highlight">coding and debugging</span>, and I'm always expanding my skill set. Beyond coding, I'm an <span class="highlight">avid cricket player</span> — the sport's strategy and teamwork inspire my approach to development.
-      </p>
-    </div>
+    <div class="content-cards">
+      <div class="card">
+        <h1>Welcome to My Portfolio</h1>
+        <p>
+          Hi, I'm Avighna Das. This is my personal website showcasing my projects and skills.
+          Feel free to explore and learn more about my work.
+        </p>
+      </div>
 
-    <div class="card">
-      <h3>List of achievements:</h3>
-      <ul>
-        <li>Built this website entirely from scratch using HTML.</li>
-        <li>Developed several Python projects, including automation tools and web scrapers.</li>
-        <li>Participated in inter-school coding competitions and secured top ranks.</li>
-        <li>Created a personal blog using static site generators.</li>
-        <li>Represented school in district-level cricket tournaments.</li>
-      </ul>
+      <div class="card">
+        <h2>Featured Projects</h2>
+        <ul>
+          <li><strong>Personal Portfolio Website:</strong> Responsive site with theme toggle and animations.</li>
+          <li><strong>Daily Journal Webpage:</strong> Creative journal style layout with hover effects.</li>
+          <li><strong>Game Showcase:</strong> UI for listing games with screenshots and details.</li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <script>
     const themeIcon = document.getElementById('themeIcon');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'light' : 'dark');
+    const currentTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
 
-    if (currentTheme === 'dark') {
+    if (currentTheme === 'light') {
       document.body.classList.add('light-mode');
       themeIcon.src = 'sun.png';
     } else {
+      document.body.classList.remove('light-mode');
       themeIcon.src = 'moon.png';
     }
 
     function toggleMode() {
-      const isDark = document.body.classList.toggle('light-mode');
-      if (isDark) {
+      const isNowLight = document.body.classList.toggle('light-mode');
+      if (isNowLight) {
         themeIcon.src = 'sun.png';
-        localStorage.setItem('theme', 'dark');
+        localStorage.setItem('theme', 'light');
       } else {
         themeIcon.src = 'moon.png';
-        localStorage.setItem('theme', 'light');
+        localStorage.setItem('theme', 'dark');
       }
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      document.querySelectorAll('.card, .vertical-card').forEach(el => {
+      document.querySelectorAll('.vertical-card, .content-cards').forEach(el => {
         el.style.opacity = 1;
         el.style.transform = 'translateY(0)';
       });
